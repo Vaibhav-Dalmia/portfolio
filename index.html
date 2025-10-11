@@ -1,0 +1,648 @@
+
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Vaibhav Dalmia — B.Tech CSE (AI). Full-stack developer focused on AI, blockchain, Java, Spring Boot, React and Python." />
+  <meta name="keywords" content="Vaibhav Dalmia, AI, Blockchain, Java, Spring Boot, React, Python, portfolio" />
+  <meta name="theme-color" content="#111827" />
+  <title>Vaibhav Dalmia | AI & Blockchain Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+  <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --site-max: 1100px;
+      --accent: #7C3AED;
+      --accent-600: #6D28D9;
+      --secondary: #EC4899;
+    }
+
+    html { font-family: 'Space Grotesk', sans-serif; scroll-behavior: smooth; }
+    body.mode-transition { transition: background-color .3s ease, color .3s ease; }
+
+    /* Layout helpers */
+    .site-inner { max-width: var(--site-max); margin-left: auto; margin-right: auto; }
+
+    /* --- MARQUEE STYLES (REBUILT FOR SEAMLESS LOOP) --- */
+    .marquee-wrapper {
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .marquee-row {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      will-change: transform;
+      animation-name: scroll;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    /* Set different durations for each row */
+    .marquee-row.d-slow { animation-duration: 90s; }
+    .marquee-row.d-medium { animation-duration: 70s; }
+    .marquee-row.d-fast { animation-duration: 50s; }
+
+    .marquee-row.scroll-right {
+      animation-direction: reverse;
+    }
+
+    .marquee-content {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: space-around;
+      gap: 4rem;
+      padding: 0 2rem;
+    }
+    
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    
+    .marquee-logo {
+      height: 3.2rem;
+      width: auto;
+      transition: transform 0.2s ease-in-out;
+    }
+    .skill-item:hover .marquee-logo {
+      transform: scale(1.15);
+    }
+    
+    .skill-item span {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: inherit;
+    }
+
+    html.dark .marquee-logo.invert-dark { filter: invert(1); }
+    
+    /* New keyframe logic for perfect loop */
+    @keyframes scroll {
+      to {
+        transform: translateX(-50%);
+      }
+    }
+    /* --- END MARQUEE STYLES --- */
+    
+    /* Other original styles */
+    .interactive-card { position: relative; cursor: pointer; transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .24s, filter .24s; -webkit-tap-highlight-color: transparent; }
+    .interactive-card > * { position: relative; z-index: 10; }
+    .interactive-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(15,23,42,.08); }
+    .interactive-card.floating { transform: translateY(-30px) scale(1.02); box-shadow: 0 30px 80px rgba(23,0,70,0.18); }
+    .interactive-card::before { content:""; position:absolute; inset:0; border-radius: 14px; pointer-events:none; opacity:0; transition:opacity .32s ease; }
+    html.dark .interactive-card::before { mix-blend-mode: screen; background: linear-gradient(90deg, rgba(124,58,237,.14), rgba(236,72,153,.12)); }
+    html:not(.dark) .interactive-card::before { mix-blend-mode: multiply; background: linear-gradient(90deg, rgba(124,58,237,.06), rgba(6,182,212,.04)); }
+    .interactive-card:hover::before { opacity: 1; }
+    .aspect-16-9 { position: relative; width: 100%; padding-top: calc(9 / 16 * 100%); overflow: hidden; }
+    .aspect-16-9 img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+    #deepsite-blobs { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: visible; }
+    .deepsite-blob { position:absolute; filter: blur(56px); -webkit-filter: blur(56px); border-radius: 48% 52% 52% 48% / 52% 48% 52% 48%; will-change: transform, border-radius, opacity; pointer-events:none; }
+    html.dark .deepsite-blob { mix-blend-mode: screen; opacity: .18; }
+    html:not(.dark) .deepsite-blob { mix-blend-mode: multiply; opacity: .12; }
+    .deepsite-blob.b1 { width:60vmin; height:60vmin; left:-8vmin; top:-12vmin; background: linear-gradient(135deg,#7c3aed 0%, #ec4899 100%); animation: blobMorph1 9s ease-in-out infinite, blobDrift1 14s linear infinite; }
+    .deepsite-blob.b2 { width:44vmin; height:44vmin; right:-6vmin; top:8vmin; background: linear-gradient(135deg,#4f46e5 0%, #06b6d4 100%); animation: blobMorph2 11s ease-in-out infinite, blobDrift2 18s linear infinite; }
+    .deepsite-blob.b3 { width:48vmin; height:48vmin; left:10vmin; bottom:-10vmin; background: linear-gradient(135deg,#fb923c 0%, #ec4899 100%); animation: blobMorph3 13s ease-in-out infinite, blobDrift3 20s linear infinite; }
+    .deepsite-blob.b4 { width:30vmin; height:30vmin; right:20vmin; bottom:6vmin; background: linear-gradient(135deg,#7c3aed 0%, #06b6d4 100%); animation: blobMorph4 8.5s ease-in-out infinite, blobDrift4 16s linear infinite; }
+    #progress { position: fixed; top:0; left:0; height:3px; background: var(--accent); width:0; z-index: 60; transition: width .1s linear; }
+    .hero-title { margin-bottom: .3rem; }
+    @media (min-width: 768px) { .hero-title { margin-bottom: .75rem; } }
+    :focus { outline: 3px solid #c7b0ff33; outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) { .deepsite-blob, .marquee-row, .scroll-arrow, #progress, .interactive-card { animation: none !important; transition: none !important; transform: none !important; } }
+    .section-inner { padding-top: clamp(2.5rem, 4.5vw, 6rem); padding-bottom: clamp(2.5rem, 4.5vw, 6rem); }
+    .nav-link { opacity: 0; }
+  </style>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: { 500: '#7C3AED', 600: '#6D28D9' },
+            secondary: { 500: '#EC4899', 600: '#DB2777' },
+            accent: { 500: '#06B6D4', 600: '#0891B2' }
+          },
+          fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-gray-100 mode-transition min-h-screen">
+
+  <div id="progress" aria-hidden="true"></div>
+  <a class="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-4 focus:bg-white dark:focus:bg-slate-800 focus:px-3 focus:py-2 rounded" href="#main">Skip to content</a>
+  <div id="vanta-bg" aria-hidden="true"></div>
+  <div id="deepsite-blobs" aria-hidden="true">
+    <div class="deepsite-blob b1"></div><div class="deepsite-blob b2"></div><div class="deepsite-blob b3"></div><div class="deepsite-blob b4"></div>
+  </div>
+
+  <nav class="sticky top-0 z-50 bg-slate-100/80 dark:bg-black/80 backdrop-blur-lg border-b border-slate-200 dark:border-gray-800">
+      <div class="container mx-auto px-6 py-4 site-inner">
+        <div class="flex items-center justify-between">
+          <a href="index.html" class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white">Vaibhav Dalmia</a>
+          <div class="hidden md:flex items-center space-x-8">
+            <a href="#about" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">About</a>
+            <a href="#skills" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">Skills</a>
+            <a href="#projects" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">Projects</a>
+            <a href="#certificates" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">Certificates</a>
+            <a href="#contact" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">Contact</a>
+            <button id="theme-toggle" aria-label="Toggle theme" class="nav-link p-2 rounded-full hover:bg-slate-200 dark:hover:bg-gray-700 transition border border-slate-300 dark:border-gray-600">
+              <span id="theme-icon" class="flex items-center justify-center w-5 h-5"><i data-feather="moon" class="w-full h-full"></i></span>
+            </button>
+          </div>
+          <button class="md:hidden focus:outline-none" id="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open main menu">
+            <i data-feather="menu"></i>
+          </button>
+        </div>
+      </div>
+      <div class="md:hidden hidden bg-white dark:bg-gray-900 border-t border-slate-200 dark:border-gray-800" id="mobile-menu">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium">About</a><a href="#skills" class="block px-3 py-2 rounded-md text-base font-medium">Skills</a><a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium">Projects</a><a href="#certificates" class="block px-3 py-2 rounded-md text-base font-medium">Certificates</a><a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+          <div class="px-3 py-2">
+            <button id="mobile-theme-toggle" class="flex items-center text-slate-600 dark:text-gray-300 px-3 py-2 rounded-md w-full hover:bg-slate-100 dark:hover:bg-gray-800 transition">
+              <span id="mobile-theme-icon" class="flex items-center justify-center w-5 h-5 mr-2"><i data-feather="moon" class="w-full h-full"></i></span> Toggle Theme
+            </button>
+          </div>
+        </div>
+      </div>
+  </nav>
+
+  <main id="main" class="mode-transition">
+    <header class="relative h-screen flex items-center overflow-hidden section-inner">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(236,72,153,0.08)); mix-blend-mode: screen; opacity: 0.9;"></div>
+      </div>
+      <div class="container px-6 site-inner z-10">
+        <div class="max-w-4xl mx-auto text-center">
+          <h1 class="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 md:mb-6 text-slate-900 dark:text-white">
+            <span class="anime-hero-line">Building scalable systems powered by</span> <span id="typed-output" class="text-secondary-500">AI</span>.
+          </h1>
+          <p class="anime-hero-line text-lg sm:text-xl md:text-2xl text-slate-600 dark:text-gray-300 mb-8">
+            Full-Stack Developer · Java · Spring Boot · React · Python · AI Specialist
+          </p>
+          <div class="anime-hero-line flex flex-wrap justify-center gap-4">
+            <a href="#projects" class="px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition transform hover:scale-105">View Projects</a>
+            <a target="_blank" rel="noopener" class="px-8 py-3 border-2 border-slate-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 text-slate-700 dark:text-gray-300 font-medium rounded-lg transition transform hover:scale-105">Resume[SOON]</a>
+          </div>
+        </div>
+      </div>
+      <a href="#about" aria-label="Scroll to next section" class="absolute bottom-16 left-1/2 -translate-x-1/2 z-20">
+        <div class="scroll-arrow" aria-hidden="true" style="width:24px;height:24px;border-left:3px solid; border-bottom:3px solid; transform:rotate(-45deg); animation:bounce 2.2s infinite;"></div>
+      </a>
+    </header>
+
+    <section id="about" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg section-inner" aria-labelledby="about-label">
+      <div class="container site-inner px-6" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto">
+          <h2 id="about-label" class="text-3xl font-semibold text-center mb-8 text-slate-900 dark:text-white">About Me</h2>
+          <div class="flex flex-col md:flex-row items-center gap-8">
+            <div class="w-full md:w-1/3 flex justify-center">
+              <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-primary-500 shadow-lg">
+                <img src="vaibhavdalmia.jpg" alt="Portrait of Vaibhav Dalmia" class="w-full h-full object-cover" />
+              </div>
+            </div>
+            <div class="w-full md:w-2/3">
+              <p class="text-lg mb-6 text-slate-600 dark:text-gray-300">
+                I'm a B.Tech CSE student specializing in AI. I focus on building reliable, intelligent, and scalable software systems on AI and full-stack development.
+              </p>
+              <ul class="space-y-2 text-slate-700 dark:text-gray-100">
+                <li class="flex items-center"><i data-feather="book" class="mr-2 text-primary-500"></i><span>🎓 B.Tech CSE (AI Specialization)</span></li>
+                <li class="flex items-center"><i data-feather="code" class="mr-2 text-primary-500"></i><span>💻 Passionate about backend architecture and decentralized systems</span></li>
+                <li class="flex items-center"><i data-feather="zap" class="mr-2 text-primary-500"></i><span>🚀 Committed to writing clean, efficient, and maintainable code</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg section-inner" aria-labelledby="skills-label">
+      <div class="container site-inner px-6">
+        <h2 id="skills-label" class="text-3xl font-semibold text-center mb-12 text-slate-900 dark:text-white">Technical Skills</h2>
+        <div class="space-y-8">
+          
+          <div class="marquee-wrapper">
+            <div class="marquee-row d-medium">
+              <div class="marquee-content">
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="marquee-logo" alt="Java logo"><span>Java</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="marquee-logo" alt="Spring Boot logo"><span>Spring Boot</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="marquee-logo" alt="Python logo"><span>Python</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="marquee-logo" alt="JavaScript logo"><span>JavaScript</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" class="marquee-logo" alt="TypeScript logo"><span>TypeScript</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="marquee-logo" alt="React logo"><span>React</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="marquee-logo invert-dark" alt="Next.js logo"><span>Next.js</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="marquee-logo" alt="PyTorch logo"><span>PyTorch</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="marquee-logo" alt="D3.js logo"><span>D3.js</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" class="marquee-logo invert-dark" alt="Three.js logo"><span>Three.js</span></div>
+              </div>
+              <div class="marquee-content" aria-hidden="true">
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="marquee-logo" alt="Java logo"><span>Java</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="marquee-logo" alt="Spring Boot logo"><span>Spring Boot</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="marquee-logo" alt="Python logo"><span>Python</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="marquee-logo" alt="JavaScript logo"><span>JavaScript</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" class="marquee-logo" alt="TypeScript logo"><span>TypeScript</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="marquee-logo" alt="React logo"><span>React</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="marquee-logo invert-dark" alt="Next.js logo"><span>Next.js</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="marquee-logo" alt="PyTorch logo"><span>PyTorch</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="marquee-logo" alt="D3.js logo"><span>D3.js</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" class="marquee-logo invert-dark" alt="Three.js logo"><span>Three.js</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="marquee-wrapper">
+            <div class="marquee-row scroll-right d-slow">
+              <div class="marquee-content">
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="marquee-logo" alt="HTML5 logo"><span>HTML5</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="marquee-logo" alt="CSS3 logo"><span>CSS3</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="marquee-logo" alt="Tailwind CSS logo"><span>Tailwind</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/solidity/solidity-original.svg" class="marquee-logo" alt="Solidity logo"><span>Solidity</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="marquee-logo" alt="Node.js logo"><span>Node.js</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="marquee-logo" alt="C logo"><span>C</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hardhat/hardhat-original.svg" class="marquee-logo" alt="Hardhat logo"><span>Hardhat</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" class="marquee-logo" alt="Sass logo"><span>Sass</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="marquee-logo" alt="Bootstrap logo"><span>Bootstrap</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" class="marquee-logo" alt="Webpack logo"><span>Webpack</span></div>
+              </div>
+              <div class="marquee-content" aria-hidden="true">
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="marquee-logo" alt="HTML5 logo"><span>HTML5</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="marquee-logo" alt="CSS3 logo"><span>CSS3</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="marquee-logo" alt="Tailwind CSS logo"><span>Tailwind</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/solidity/solidity-original.svg" class="marquee-logo" alt="Solidity logo"><span>Solidity</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="marquee-logo" alt="Node.js logo"><span>Node.js</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="marquee-logo" alt="C logo"><span>C</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hardhat/hardhat-original.svg" class="marquee-logo" alt="Hardhat logo"><span>Hardhat</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" class="marquee-logo" alt="Sass logo"><span>Sass</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="marquee-logo" alt="Bootstrap logo"><span>Bootstrap</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" class="marquee-logo" alt="Webpack logo"><span>Webpack</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="marquee-wrapper">
+            <div class="marquee-row d-fast">
+              <div class="marquee-content">
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="marquee-logo" alt="Git logo"><span>Git</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="marquee-logo" alt="Docker logo"><span>Docker</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="marquee-logo" alt="Kubernetes logo"><span>Kubernetes</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="marquee-logo invert-dark" alt="GitHub Actions logo"><span>Actions</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="marquee-logo invert-dark" alt="AWS logo"><span>AWS</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="marquee-logo" alt="PostgreSQL logo"><span>PostgreSQL</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" class="marquee-logo" alt="Firebase logo"><span>Firebase</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="marquee-logo" alt="Figma logo"><span>Figma</span></div>
+              </div>
+              <div class="marquee-content" aria-hidden="true">
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="marquee-logo" alt="Git logo"><span>Git</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="marquee-logo" alt="Docker logo"><span>Docker</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="marquee-logo" alt="Kubernetes logo"><span>Kubernetes</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="marquee-logo invert-dark" alt="GitHub Actions logo"><span>Actions</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="marquee-logo invert-dark" alt="AWS logo"><span>AWS</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="marquee-logo" alt="PostgreSQL logo"><span>PostgreSQL</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" class="marquee-logo" alt="Firebase logo"><span>Firebase</span></div>
+                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="marquee-logo" alt="Figma logo"><span>Figma</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg section-inner" aria-labelledby="projects-label">
+      <div class="container site-inner px-6" data-aos="fade-up">
+        <h2 id="projects-label" class="text-3xl font-semibold text-center mb-8 text-slate-900 dark:text-white">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <article class="interactive-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="100">
+            <div class="aspect-16-9"><img src="images/zom.png" alt="zomato"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Zomato Clone</h3>
+              <p class="text-slate-600 dark:text-gray-300 mb-4">A responsive front-end clone of Zomato built with HTML, CSS, and JavaScript.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-slate-100 dark:bg-gray-700 text-xs rounded-full">HTML</span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full">CSS</span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full">JavaScript</span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full">Responsive</span>
+              </div>
+              <div class="flex gap-3">
+                <a href="https://github.com/Vaibhav-Dalmia/zomato-clone/blob/main/index.html" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="github" class="w-4 h-4 mr-1"></i> Code</a><a href="https://zomato-clone-dalmia.vercel.app/" target="_blank" rel="noopener noreferrer"class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="external-link" class="w-4 h-4 mr-1"></i> Live</a>
+              </div>
+            </div>
+          </article>
+          <article class="interactive-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="200">
+            <div class="aspect-16-9"><img src="images/bip.png" alt="A neon sign that says Build In Progress"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Build in progress...</h3>
+              <p class="text-slate-600 dark:text-gray-300 mb-4"></p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span>
+              </div>
+              <div class="flex gap-3">
+                <a class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="github" class="w-4 h-4 mr-1"></i> </a><a href="#" class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="external-link" class="w-4 h-4 mr-1"></i> </a>
+              </div>
+            </div>
+          </article>
+          <article class="interactive-card bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md border border-slate-200 dark:border-gray-700" data-aos="fade-up" data-aos-delay="300">
+            <div class="aspect-16-9"><img src="images/bip.png" alt="A neon sign that says Build In Progress"></div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Build in progress...</h3>
+              <p class="text-slate-600 dark:text-gray-300 mb-4"></p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span><span class="px-2 py-1 bg-slate-200 dark:bg-gray-600 text-xs rounded-full"></span>
+              </div>
+              <div class="flex gap-3">
+                <a  class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="github" class="w-4 h-4 mr-1"></i> </a><a href="#" class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="external-link" class="w-4 h-4 mr-1"></i> </a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="text-center mt-8" data-aos="fade-up">
+          <a href="#" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-600 transition">View All [SOON] <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="certificates" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg section-inner" aria-labelledby="certs-label">
+      <div class="container site-inner px-6" data-aos="fade-up">
+        <h2 id="certs-label" class="text-3xl font-semibold text-center mb-8 text-slate-900 dark:text-white">Certificates</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="interactive-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-slate-200 dark:border-gray-700 p-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <div class="p-3 rounded-full bg-primary-100 dark:bg-primary-900/50"><i data-feather="award" class="text-primary-500 w-6 h-6"></i></div>
+              <h3 class="text-xl font-semibold ml-3 text-slate-900 dark:text-white">Internship certificate</h3>
+            </div>
+          
+
+          <div class="aspect-16-9"><img src="images/certificate1.jpg" alt="certificate"></div>
+            <p class="text-slate-600 dark:text-gray-300 mb-4">Completed internship at Glip</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-slate-500 dark:text-gray-400">Issued: Oct 2024</span><a href="https://ibb.co/xSWMCGdR" target="_blank" rel="noopener noreferrer" aria-label="Open full internship certificate in new tab" class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center">
+              <i data-feather="external-link" class="w-4 h-4 mr-1"></i> View </a>
+
+            </div>
+          </div>
+          
+          
+          <div class="interactive-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-slate-200 dark:border-gray-700 p-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <div class="p-3 rounded-full bg-primary-100 dark:bg-primary-900/50"><i data-feather="award" class="text-primary-500 w-6 h-6"></i></div>
+              <h3 class="text-xl font-semibold ml-3 text-slate-900 dark:text-white">Coming Soon...</h3>
+            </div>
+            <p class="text-slate-600 dark:text-gray-300 mb-4">      </p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-slate-500 dark:text-gray-400"></span><a  class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="external-link" class="w-4 h-4 mr-1"></i>SOON</a>
+            </div>
+          </div>
+          <div class="interactive-card bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden border border-slate-200 dark:border-gray-700 p-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center mb-4">
+              <div class="p-3 rounded-full bg-primary-100 dark:bg-primary-900/50"><i data-feather="award" class="text-primary-500 w-6 h-6"></i></div>
+            
+
+
+              <h3 class="text-xl font-semibold ml-3 text-slate-900 dark:text-white">Coming Soon...</h3>
+            </div>
+            <p class="text-slate-600 dark:text-gray-300 mb-4"></p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-slate-500 dark:text-gray-400"></span><a  class="text-sm font-medium text-primary-500 hover:text-primary-600 transition flex items-center"><i data-feather="external-link" class="w-4 h-4 mr-1"></i>SOON</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg section-inner" aria-labelledby="thoughts-label">
+      <div class="container site-inner px-6" data-aos="fade-up">
+        <h2 id="thoughts-label" class="text-3xl font-semibold text-center mb-8 text-slate-900 dark:text-white">Boring Stuff</h2>
+        <div class="max-w-4xl mx-auto space-y-8">
+          <article class="interactive-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-gray-700">
+            <h3 class="text-xl font-semibold mb-3 text-slate-900 dark:text-white">About me</h3>
+            <p class="text-slate-600 dark:text-gray-300"> From a childhood curiosity sparked by a mobile game to diving deep into Web3 and AI, this is my origin story as a dev.</p>
+            <a href="https://medium.com/@mail.vaibhavdalmia/my-journey-80cbd05e6ff4" target="_blank" rel="noopener" class="font-semibold text-primary-500 hover:underline">Read the full article...</a>
+          </article>
+          <article class="interactive-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-gray-700">
+            <h3 class="text-xl font-semibold mb-3 text-slate-900 dark:text-white">Fetching...</h3>
+            <p class="text-slate-600 dark:text-gray-300"></p>
+          </article>
+          <article class="interactive-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-gray-700">
+            <h3 class="text-xl font-semibold mb-3 text-slate-900 dark:text-white">Fetching...</h3>
+            <p class="text-slate-600 dark:text-gray-300 mb-4">
+              
+            </p>
+            
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg section-inner" aria-labelledby="contact-label">
+      <div class="container site-inner px-6" data-aos="fade-up">
+        <h2 id="contact-label" class="text-3xl font-semibold text-center mb-6 text-slate-900 dark:text-white">Get In Touch</h2>
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-gray-700">
+            <h3 class="text-xl font-semibold mb-4 text-slate-900 dark:text-white">Send me a message</h3>
+            <form action="https://formspree.io/f/movkkbev" method="POST" class="space-y-4">
+              
+           
+                          <form id="contact-form" action="https://formspree.io/f/movkkbev" method="POST" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1">Name</label>
+                    <input id="name" name="name" required class="w-full px-4 py-2 border-slate-300 dark:border-gray-600 rounded-md focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-700 text-slate-900" />
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1">Email</label>
+                    <input id="email" type="email" name="_replyto" required class="w-full px-4 py-2 border-slate-300 dark:border-gray-600 rounded-md focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-700 text-slate-900" />
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium text-slate-600 dark:text-gray-300 mb-1">Message</label>
+                    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border-slate-300 dark:border-gray-600 rounded-md focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-700 text-slate-900"></textarea>
+                </div>
+                <button type="submit" class="w-full px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition">Send Message</button>
+            </form>
+
+            <div id="contact-msg" role="status" aria-live="polite" class="mt-3 text-sm hidden"></div>
+
+            <script>
+            document.getElementById('contact-form')?.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const form = e.target;
+                const msgEl = document.getElementById('contact-msg');
+
+                // reset message
+                msgEl.classList.add('hidden');
+                msgEl.textContent = '';
+                msgEl.classList.remove('text-red-500', 'text-green-600');
+
+                try {
+                    const res = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (res.ok) {
+                        msgEl.classList.remove('hidden');
+                        msgEl.classList.add('text-green-600');
+                        msgEl.textContent = 'Thanks! Message sent — I will reply soon.';
+                        form.reset();
+                    } else {
+                        const json = await res.json().catch(() => ({}));
+                        msgEl.classList.remove('hidden');
+                        msgEl.classList.add('text-red-500');
+                        msgEl.textContent = json?.error || 'Submission failed. Please email mail.vaibhavdalmia0@gmail.com';
+                    }
+                } catch (err) {
+                    console.error('Contact form error:', err);
+                    msgEl.classList.remove('hidden');
+                    msgEl.classList.add('text-red-500');
+                    msgEl.textContent = 'Network error — please email mail.vaibhavdalmia0@gmail.com';
+                }
+            });
+            </script>
+
+              
+            </form>
+          </div>
+          <aside class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-slate-200 dark:border-gray-700">
+            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Contact Information</h3>
+            <div class="space-y-4 mt-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 p-2 bg-primary-100 dark:bg-primary-900/20 rounded-full"><i data-feather="mail" class="text-primary-500 w-5 h-5"></i></div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-slate-500 dark:text-gray-400">Email</p><a href="mailto:mail.vaibhavdalmia@gmail.com" class="text-base hover:text-primary-500 transition text-slate-800 dark:text-white">mail.vaibhavdalmia0@gmail.com</a>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="flex-shrink-0 p-2 bg-primary-100 dark:bg-primary-900/20 rounded-full"><i data-feather="message-square" class="text-primary-500 w-5 h-5"></i></div>
+                <div class="ml-3">
+                  <p class="text-sm font-medium text-slate-500 dark:text-gray-400">Social Media</p>
+                  <div class="flex space-x-4 mt-1">
+                    <a href="https://www.linkedin.com/in/vaibhav-dalmia-43395b362/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="text-slate-600 dark:text-gray-300 hover:text-primary-500 transition"><i data-feather="linkedin" class="w-5 h-5"></i></a><a href="https://x.com/B1zzySolNFT" target="_blank" rel="noopener" aria-label="Twitter Profile" class="text-slate-600 dark:text-gray-300 hover:text-primary-500 transition"><i data-feather="twitter" class="w-5 h-5"></i></a>
+                  </div>
+                </div>
+              </div>
+              <p class="pt-4 text-slate-600 dark:text-gray-300">Feel free to reach out for collaborations, job opportunities, internships or just to say hello!</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-8 bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-t border-slate-200 dark:border-gray-800">
+    <div class="container site-inner px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center text-slate-500 dark:text-gray-400">
+        <div class="mb-4 md:mb-0"><p>© 2025 Vaibhav Dalmia. All rights reserved.</p></div>
+        <div class="flex space-x-6">
+          <a href="https://github.com/Vaibhav-Dalmia" target="_blank" rel="noopener" aria-label="GitHub Profile" class="hover:text-primary-500 transition"><i data-feather="github"></i></a><a href="https://www.linkedin.com/in/vaibhav-dalmia-43395b362/" target="_blank" rel="noopener" aria-label="LinkedIn Profile" class="hover:text-primary-500 transition"><i data-feather="linkedin"></i></a><a href="https://x.com/B1zzySolNFT" target="_blank" rel="noopener" aria-label="Twitter Profile" class="hover:text-primary-500 transition"><i data-feather="twitter"></i></a>
+        </div>
+      </div>
+      <div class="mt-4 text-center md:text-left text-slate-500 dark:text-gray-400"><p>Last updated: October 2025</p></div>
+    </div>
+  </footer>
+
+  <script>
+    AOS.init({ duration: 700, once: true, offset: 50 });
+    document.addEventListener('DOMContentLoaded', () => {
+      new Typed('#typed-output', {
+        strings: ['AI', 'Blockchain', 'Java', 'Python'], typeSpeed: 70, backSpeed: 50, backDelay: 2000, loop: true
+      });
+      feather.replace();
+
+      // All your original theme logic, vanta, progress bar etc. is safe and unchanged
+      const themeToggle = document.getElementById('theme-toggle');
+      const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+      let vantaEffect = null;
+      function setTheme(isDark) {
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+          if (themeIcon) themeIcon.innerHTML = feather.icons.sun.toSvg();
+          if (mobileThemeIcon) mobileThemeIcon.innerHTML = feather.icons.sun.toSvg();
+          if (!vantaEffect && window.VANTA) {
+            vantaEffect = VANTA.NET({ el: "#vanta-bg", mouseControls: true, touchControls: true, gyroControls: false, minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00, color: 0x6D28D9, backgroundColor: 0x030712, points: 8.00, maxDistance: 18.00, spacing: 16.00 });
+          }
+        } else {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+          if (themeIcon) themeIcon.innerHTML = feather.icons.moon.toSvg();
+          if (mobileThemeIcon) mobileThemeIcon.innerHTML = feather.icons.moon.toSvg();
+          if (vantaEffect) { vantaEffect.destroy(); vantaEffect = null; }
+          document.getElementById('vanta-bg').style.background = '#f1f5f9';
+        }
+      }
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const stored = localStorage.getItem('color-theme');
+      setTheme(stored === 'dark' || (!stored && prefersDark));
+      function toggleTheme() { setTheme(!document.documentElement.classList.contains('dark')); }
+      if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+      if (mobileThemeToggle) mobileThemeToggle.addEventListener('click', toggleTheme);
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileMenuButton && mobileMenuButton.addEventListener('click', () => {
+        const expanded = mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+      });
+      document.querySelectorAll('.interactive-card').forEach(card => {
+        card.setAttribute('tabindex', '0'); card.setAttribute('role', 'button');
+        card.addEventListener('click', (ev) => {
+          if (ev.target.closest('a')) return; card.classList.toggle('floating'); card.setAttribute('aria-pressed', card.classList.contains('floating') ? 'true' : 'false');
+        });
+        card.addEventListener('keydown', (ev) => {
+          if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault(); if (ev.target.closest('a')) return; card.classList.toggle('floating'); card.setAttribute('aria-pressed', card.classList.contains('floating') ? 'true' : 'false');
+          }
+        });
+      });
+      document.querySelectorAll('.deepsite-blob').forEach((b, i) => b.style.animationDelay = (i * 0.6) + 's');
+      const typedCursor = document.querySelector('.typed-cursor');
+      if (typedCursor) typedCursor.style.color = getComputedStyle(document.documentElement).getPropertyValue('--tw-prose-links') || '#EC4899';
+      const progress = document.getElementById('progress');
+      function updateProgress() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+        progress.style.width = pct + '%';
+      }
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', () => {
+        if (vantaEffect && typeof vantaEffect.resize === 'function') vantaEffect.resize();
+        updateProgress();
+      });
+
+      // --- ANIME.JS ENHANCEMENTS for Hero and Nav ---
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) {
+        document.querySelector('.anime-hero-line').style.display = 'inline-block';
+        anime.timeline({ easing: 'easeOutExpo' })
+        .add({
+          targets: '.anime-hero-line', translateY: [40, 0], opacity: [0, 1], duration: 800, delay: anime.stagger(200, {start: 300})
+        });
+        anime({
+          targets: '.nav-link', translateY: [-20, 0], opacity: [0, 1], duration: 600, delay: anime.stagger(100, {start: 800}), easing: 'easeOutQuad'
+        });
+      } else {
+        document.querySelectorAll('.anime-hero-line').forEach(el => el.style.opacity = 1);
+        document.querySelectorAll('.nav-link').forEach(el => el.style.opacity = 1);
+      }
+    });
+  </script>
+</body>
+</html>
