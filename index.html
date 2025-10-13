@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
@@ -25,6 +24,39 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
+  
+    .eyes-container {
+      display: inline-flex;
+      align-items: center;
+      margin-left: 12px;
+      position: relative;
+    }
+    .eye-pair {
+      display: flex;
+      gap: 8px;
+    }
+    .eye {
+      width: 24px;
+      height: 24px;
+      background: white;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .pupil {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #000;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease-out;
+    }
+  
+
     :root {
       --site-max: 1100px;
       --accent: #7C3AED;
@@ -38,7 +70,7 @@
     /* Layout helpers */
     .site-inner { max-width: var(--site-max); margin-left: auto; margin-right: auto; }
 
-    /* --- MARQUEE STYLES (REBUILT FOR SEAMLESS LOOP) --- */
+    
     .marquee-wrapper {
       overflow: hidden;
       position: relative;
@@ -97,15 +129,31 @@
 
     html.dark .marquee-logo.invert-dark { filter: invert(1); }
     
-    /* New keyframe logic for perfect loop */
+  
     @keyframes scroll {
       to {
         transform: translateX(-50%);
       }
     }
-    /* --- END MARQUEE STYLES --- */
-    
-    /* Other original styles */
+   
+    .scroll-btn {
+      background: transparent;
+      border: none;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 20;
+      padding: 0;
+      margin: 0 0.5rem;
+    }
+    .scroll-btn:hover {
+      color: var(--accent-600);
+    }
+
+  
     .interactive-card { position: relative; cursor: pointer; transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .24s, filter .24s; -webkit-tap-highlight-color: transparent; }
     .interactive-card > * { position: relative; z-index: 10; }
     .interactive-card:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(15,23,42,.08); }
@@ -161,7 +209,20 @@
   <nav class="sticky top-0 z-50 bg-slate-100/80 dark:bg-black/80 backdrop-blur-lg border-b border-slate-200 dark:border-gray-800">
       <div class="container mx-auto px-6 py-4 site-inner">
         <div class="flex items-center justify-between">
-          <a href="index.html" class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white">Vaibhav Dalmia</a>
+         
+          <div class="flex items-center">
+            <a href="index.html" class="text-2xl md:text-3xl font-semibold text-slate-900 dark:text-white">Vaibhav Dalmia</a>
+
+          
+            <div class="eyes-container" aria-hidden="true">
+              <div class="eye-pair">
+                <div class="eye"><div class="pupil" id="left-pupil"></div></div>
+                <div class="eye"><div class="pupil" id="right-pupil"></div></div>
+              </div>
+            </div>
+            
+          </div>
+
           <div class="hidden md:flex items-center space-x-8">
             <a href="#about" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">About</a>
             <a href="#skills" class="nav-link text-slate-600 dark:text-gray-300 hover:text-primary-500 transition">Skills</a>
@@ -204,7 +265,7 @@
           </p>
           <div class="anime-hero-line flex flex-wrap justify-center gap-4">
             <a href="#projects" class="px-8 py-3 bg-primary-500 hover:bg-primary-600 text-white font-medium rounded-lg transition transform hover:scale-105">View Projects</a>
-            <a target="_blank" rel="noopener" class="px-8 py-3 border-2 border-slate-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 text-slate-700 dark:text-gray-300 font-medium rounded-lg transition transform hover:scale-105">Resume[SOON]</a>
+            <a target="_blank" rel="noopener" class="px-8 py-3 border-2 border-slate-300 dark:border-gray-600 hover:border-primary-500 dark:hover:border-primary-500 text-slate-700 dark:text-gray-300 font-medium rounded-lg transition transform hover:scale-105">Resume</a>
           </div>
         </div>
       </div>
@@ -243,88 +304,131 @@
         <h2 id="skills-label" class="text-3xl font-semibold text-center mb-12 text-slate-900 dark:text-white">Technical Skills</h2>
         <div class="space-y-8">
           
-          <div class="marquee-wrapper">
-            <div class="marquee-row d-medium">
-              <div class="marquee-content">
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="marquee-logo" alt="Java logo"><span>Java</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="marquee-logo" alt="Spring Boot logo"><span>Spring Boot</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="marquee-logo" alt="Python logo"><span>Python</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="marquee-logo" alt="JavaScript logo"><span>JavaScript</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" class="marquee-logo" alt="TypeScript logo"><span>TypeScript</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="marquee-logo" alt="React logo"><span>React</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="marquee-logo invert-dark" alt="Next.js logo"><span>Next.js</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="marquee-logo" alt="PyTorch logo"><span>PyTorch</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="marquee-logo" alt="D3.js logo"><span>D3.js</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" class="marquee-logo invert-dark" alt="Three.js logo"><span>Three.js</span></div>
-              </div>
-              <div class="marquee-content" aria-hidden="true">
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="marquee-logo" alt="Java logo"><span>Java</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="marquee-logo" alt="Spring Boot logo"><span>Spring Boot</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="marquee-logo" alt="Python logo"><span>Python</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="marquee-logo" alt="JavaScript logo"><span>JavaScript</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" class="marquee-logo" alt="TypeScript logo"><span>TypeScript</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="marquee-logo" alt="React logo"><span>React</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="marquee-logo invert-dark" alt="Next.js logo"><span>Next.js</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="marquee-logo" alt="PyTorch logo"><span>PyTorch</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="marquee-logo" alt="D3.js logo"><span>D3.js</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" class="marquee-logo invert-dark" alt="Three.js logo"><span>Three.js</span></div>
+          
+          <div class="relative">
+            <div class="marquee-wrapper">
+              <div id="marquee-medium" class="marquee-row d-medium">
+                <div class="marquee-content">
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="marquee-logo" alt="Java logo"><span>Java</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="marquee-logo" alt="Spring Boot logo"><span>Spring Boot</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="marquee-logo" alt="Python logo"><span>Python</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="marquee-logo" alt="JavaScript logo"><span>JavaScript</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" class="marquee-logo" alt="TypeScript logo"><span>TypeScript</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="marquee-logo" alt="React logo"><span>React</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="marquee-logo invert-dark" alt="Next.js logo"><span>Next.js</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="marquee-logo" alt="PyTorch logo"><span>PyTorch</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="marquee-logo" alt="D3.js logo"><span>D3.js</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" class="marquee-logo invert-dark" alt="Three.js logo"><span>Three.js</span></div>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" class="marquee-logo" alt="Java logo"><span>Java</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" class="marquee-logo" alt="Spring Boot logo"><span>Spring Boot</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" class="marquee-logo" alt="Python logo"><span>Python</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="marquee-logo" alt="JavaScript logo"><span>JavaScript</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" class="marquee-logo" alt="TypeScript logo"><span>TypeScript</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="marquee-logo" alt="React logo"><span>React</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" class="marquee-logo invert-dark" alt="Next.js logo"><span>Next.js</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" class="marquee-logo" alt="PyTorch logo"><span>PyTorch</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/d3js/d3js-original.svg" class="marquee-logo" alt="D3.js logo"><span>D3.js</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" class="marquee-logo invert-dark" alt="Three.js logo"><span>Three.js</span></div>
+                </div>
               </div>
             </div>
-          </div>
-          
-          <div class="marquee-wrapper">
-            <div class="marquee-row scroll-right d-slow">
-              <div class="marquee-content">
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="marquee-logo" alt="HTML5 logo"><span>HTML5</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="marquee-logo" alt="CSS3 logo"><span>CSS3</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="marquee-logo" alt="Tailwind CSS logo"><span>Tailwind</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/solidity/solidity-original.svg" class="marquee-logo" alt="Solidity logo"><span>Solidity</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="marquee-logo" alt="Node.js logo"><span>Node.js</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="marquee-logo" alt="C logo"><span>C</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hardhat/hardhat-original.svg" class="marquee-logo" alt="Hardhat logo"><span>Hardhat</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" class="marquee-logo" alt="Sass logo"><span>Sass</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="marquee-logo" alt="Bootstrap logo"><span>Bootstrap</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" class="marquee-logo" alt="Webpack logo"><span>Webpack</span></div>
-              </div>
-              <div class="marquee-content" aria-hidden="true">
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="marquee-logo" alt="HTML5 logo"><span>HTML5</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="marquee-logo" alt="CSS3 logo"><span>CSS3</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="marquee-logo" alt="Tailwind CSS logo"><span>Tailwind</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/solidity/solidity-original.svg" class="marquee-logo" alt="Solidity logo"><span>Solidity</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="marquee-logo" alt="Node.js logo"><span>Node.js</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="marquee-logo" alt="C logo"><span>C</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hardhat/hardhat-original.svg" class="marquee-logo" alt="Hardhat logo"><span>Hardhat</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" class="marquee-logo" alt="Sass logo"><span>Sass</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="marquee-logo" alt="Bootstrap logo"><span>Bootstrap</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" class="marquee-logo" alt="Webpack logo"><span>Webpack</span></div>
-              </div>
+
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <button onclick="scrollMarquee('marquee-medium', 'left')" class="scroll-btn" aria-label="Scroll skills left">
+                <i data-feather="chevron-left"></i>
+              </button>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center">
+              <button onclick="scrollMarquee('marquee-medium', 'right')" class="scroll-btn" aria-label="Scroll skills right">
+                <i data-feather="chevron-right"></i>
+              </button>
             </div>
           </div>
 
-          <div class="marquee-wrapper">
-            <div class="marquee-row d-fast">
-              <div class="marquee-content">
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="marquee-logo" alt="Git logo"><span>Git</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="marquee-logo" alt="Docker logo"><span>Docker</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="marquee-logo" alt="Kubernetes logo"><span>Kubernetes</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="marquee-logo invert-dark" alt="GitHub Actions logo"><span>Actions</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="marquee-logo invert-dark" alt="AWS logo"><span>AWS</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="marquee-logo" alt="PostgreSQL logo"><span>PostgreSQL</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" class="marquee-logo" alt="Firebase logo"><span>Firebase</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="marquee-logo" alt="Figma logo"><span>Figma</span></div>
-              </div>
-              <div class="marquee-content" aria-hidden="true">
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="marquee-logo" alt="Git logo"><span>Git</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="marquee-logo" alt="Docker logo"><span>Docker</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="marquee-logo" alt="Kubernetes logo"><span>Kubernetes</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="marquee-logo invert-dark" alt="GitHub Actions logo"><span>Actions</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="marquee-logo invert-dark" alt="AWS logo"><span>AWS</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="marquee-logo" alt="PostgreSQL logo"><span>PostgreSQL</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" class="marquee-logo" alt="Firebase logo"><span>Firebase</span></div>
-                <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="marquee-logo" alt="Figma logo"><span>Figma</span></div>
+        
+          <div class="relative">
+            <div class="marquee-wrapper">
+              <div id="marquee-slow" class="marquee-row scroll-right d-slow">
+                <div class="marquee-content">
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="marquee-logo" alt="HTML5 logo"><span>HTML5</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="marquee-logo" alt="CSS3 logo"><span>CSS3</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="marquee-logo" alt="Tailwind CSS logo"><span>Tailwind</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/solidity/solidity-original.svg" class="marquee-logo" alt="Solidity logo"><span>Solidity</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="marquee-logo" alt="Node.js logo"><span>Node.js</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="marquee-logo" alt="C logo"><span>C</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hardhat/hardhat-original.svg" class="marquee-logo" alt="Hardhat logo"><span>Hardhat</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" class="marquee-logo" alt="Sass logo"><span>Sass</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="marquee-logo" alt="Bootstrap logo"><span>Bootstrap</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" class="marquee-logo" alt="Webpack logo"><span>Webpack</span></div>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="marquee-logo" alt="HTML5 logo"><span>HTML5</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="marquee-logo" alt="CSS3 logo"><span>CSS3</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" class="marquee-logo" alt="Tailwind CSS logo"><span>Tailwind</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/solidity/solidity-original.svg" class="marquee-logo" alt="Solidity logo"><span>Solidity</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" class="marquee-logo" alt="Node.js logo"><span>Node.js</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" class="marquee-logo" alt="C logo"><span>C</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hardhat/hardhat-original.svg" class="marquee-logo" alt="Hardhat logo"><span>Hardhat</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" class="marquee-logo" alt="Sass logo"><span>Sass</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" class="marquee-logo" alt="Bootstrap logo"><span>Bootstrap</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" class="marquee-logo" alt="Webpack logo"><span>Webpack</span></div>
+                </div>
               </div>
             </div>
+
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <button onclick="scrollMarquee('marquee-slow', 'left')" class="scroll-btn" aria-label="Scroll slow left">
+                <i data-feather="chevron-left"></i>
+              </button>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center">
+              <button onclick="scrollMarquee('marquee-slow', 'right')" class="scroll-btn" aria-label="Scroll slow right">
+                <i data-feather="chevron-right"></i>
+              </button>
+            </div>
           </div>
+
+        
+          <div class="relative">
+            <div class="marquee-wrapper">
+              <div id="marquee-fast" class="marquee-row d-fast">
+                <div class="marquee-content">
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="marquee-logo" alt="Git logo"><span>Git</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="marquee-logo" alt="Docker logo"><span>Docker</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="marquee-logo" alt="Kubernetes logo"><span>Kubernetes</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="marquee-logo invert-dark" alt="GitHub Actions logo"><span>Actions</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="marquee-logo invert-dark" alt="AWS logo"><span>AWS</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="marquee-logo" alt="PostgreSQL logo"><span>PostgreSQL</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" class="marquee-logo" alt="Firebase logo"><span>Firebase</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="marquee-logo" alt="Figma logo"><span>Figma</span></div>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" class="marquee-logo" alt="Git logo"><span>Git</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" class="marquee-logo" alt="Docker logo"><span>Docker</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="marquee-logo" alt="Kubernetes logo"><span>Kubernetes</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="marquee-logo invert-dark" alt="GitHub Actions logo"><span>Actions</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" class="marquee-logo invert-dark" alt="AWS logo"><span>AWS</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" class="marquee-logo" alt="PostgreSQL logo"><span>PostgreSQL</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg" class="marquee-logo" alt="Firebase logo"><span>Firebase</span></div>
+                  <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" class="marquee-logo" alt="Figma logo"><span>Figma</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute inset-y-0 left-0 flex items-center">
+              <button onclick="scrollMarquee('marquee-fast', 'left')" class="scroll-btn" aria-label="Scroll fast left">
+                <i data-feather="chevron-left"></i>
+              </button>
+            </div>
+            <div class="absolute inset-y-0 right-0 flex items-center">
+              <button onclick="scrollMarquee('marquee-fast', 'right')" class="scroll-btn" aria-label="Scroll fast right">
+                <i data-feather="chevron-right"></i>
+              </button>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -508,7 +612,54 @@
       });
       feather.replace();
 
-      // All your original theme logic, vanta, progress bar etc. is safe and unchanged
+    
+      function scrollMarquee(id, direction) {
+        const marquee = document.getElementById(id);
+        if (!marquee) return;
+      
+      
+
+        const style = window.getComputedStyle(marquee);
+        const transform = style.getPropertyValue('transform');
+        let currentTranslateX = 0;
+        if (transform && transform !== 'none') {
+          try {
+            const matrix = new DOMMatrix(transform);
+            currentTranslateX = matrix.m41;
+          } catch (err) {
+            
+            const parts = transform.match(/matrix\((.+)\)/);
+            if (parts && parts[1]) {
+              const nums = parts[1].split(',').map(n => parseFloat(n.trim()));
+              currentTranslateX = nums.length === 6 ? nums[4] : 0;
+            }
+          }
+        }
+
+        
+        const container = marquee.parentElement;
+        const scrollAmount = container ? container.offsetWidth / 4 : 200;
+        
+        // translation
+        let newTranslateX = currentTranslateX;
+        if (direction === 'left') {
+          newTranslateX -= scrollAmount;
+        } else if (direction === 'right') {
+          newTranslateX += scrollAmount;
+        }
+        
+        // Animate 
+        anime({
+          targets: marquee,
+          translateX: newTranslateX,
+          duration: 500,
+          easing: 'easeOutQuad'
+        });
+      }
+      
+      window.scrollMarquee = scrollMarquee;
+
+      
       const themeToggle = document.getElementById('theme-toggle');
       const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
       const themeIcon = document.getElementById('theme-icon');
@@ -572,7 +723,62 @@
         updateProgress();
       });
 
-      // --- ANIME.JS ENHANCEMENTS for Hero and Nav ---
+    
+      (function setupEyes() {
+        const leftPupil = document.getElementById('left-pupil');
+        const rightPupil = document.getElementById('right-pupil');
+        const eyesContainer = document.querySelector('.eyes-container');
+
+        if (!leftPupil || !rightPupil || !eyesContainer) return;
+
+        function trackCursor(e) {
+          const eyesRect = eyesContainer.getBoundingClientRect();
+          const eyesCenterX = eyesRect.left + eyesRect.width / 2;
+          const eyesCenterY = eyesRect.top + eyesRect.height / 2;
+
+          
+          const angle = Math.atan2(e.clientY - eyesCenterY, e.clientX - eyesCenterX);
+
+          
+          const distance = Math.min(4,
+            Math.sqrt(Math.pow(e.clientX - eyesCenterX, 2) + Math.pow(e.clientY - eyesCenterY, 2)) / 10);
+
+          const leftX = distance * Math.cos(angle);
+          const leftY = distance * Math.sin(angle);
+
+        
+          const rightX = distance * Math.cos(angle) * 0.9;
+          const rightY = distance * Math.sin(angle) * 0.9;
+
+          leftPupil.style.transform = `translate(calc(-50% + ${leftX}px), calc(-50% + ${leftY}px))`;
+          rightPupil.style.transform = `translate(calc(-50% + ${rightX}px), calc(-50% + ${rightY}px))`;
+        }
+
+        document.addEventListener('mousemove', trackCursor);
+
+        
+        function blinkEyes() {
+          const eyes = document.querySelectorAll('.eye');
+          eyes.forEach(eye => {
+            eye.style.height = '2px';
+            eye.style.marginTop = '11px';
+            setTimeout(() => {
+              eye.style.height = '24px';
+              eye.style.marginTop = '0';
+            }, 100);
+          });
+
+          
+          const nextBlink = 3000 + Math.random() * 7000;
+          setTimeout(blinkEyes, nextBlink);
+        }
+
+        
+        setTimeout(blinkEyes, 5000);
+      })();
+      
+
+      
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!prefersReducedMotion) {
         document.querySelector('.anime-hero-line').style.display = 'inline-block';
@@ -591,8 +797,4 @@
   </script>
 </body>
 </html>
-
-
-
-
 
